@@ -4,8 +4,8 @@ const WebSocket = require('ws');
 const path = require('path');
 const EventHubReader = require('./scripts/event-hub-reader.js');
 
-const iotHubConnectionString = 'HostName=IoT-Hub-Hackathon-SMBSummit.azure-devices.net;DeviceId=MXIoTDevKit;SharedAccessKey=mnr9GDGJP7/2TZ0u4/i4cXM5fbmPYRJxPYMmEX7Z+7o=';
-const eventHubConsumerGroup = 'xyz';
+const iotHubConnectionString = 'HostName=IoT-Hub-Hackathon-SMBSummit.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=0u+5ze78+CmGiqP6RZarCBUMlwQg3rgryerhzpNnGMY=';
+const eventHubConsumerGroup = 'weatherdatacg';
 
 // Redirect requests to the public subdirectory to the root
 const app = express();
@@ -38,6 +38,7 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
 
 (async () => {
   await eventHubReader.startReadMessage((message, date, deviceId) => {
+    console.log('Read event hub message');
     try {
       const payload = {
         IotData: message,
@@ -46,6 +47,7 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
       };
 
       wss.broadcast(JSON.stringify(payload));
+      console.log('Broadcast payload from [%s]', JSON.stringify(payload));
     } catch (err) {
       console.error('Error broadcasting: [%s] from [%s].', err, message);
     }
