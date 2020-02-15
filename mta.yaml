@@ -1,0 +1,33 @@
+ID: iothackathon
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: server
+   type: nodejs
+   path: server
+   provides:
+    - name: server_api
+      properties:
+         url: ${default-url}
+
+ - name: webapp
+   type: html5
+   path: webapp
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_iothackathon
+
+resources:
+ - name: uaa_iothackathon
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+

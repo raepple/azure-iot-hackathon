@@ -1,0 +1,14 @@
+{
+  "dependencies": {},
+  "description": "my description",
+  "files": [],
+  "main": "server.js",
+  "name": "server",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "version": "1.0.0"
+}
