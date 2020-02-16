@@ -14,8 +14,17 @@ class EventHubReader {
 
   async startReadMessage(startReadMessageCallback) {
     try {
-      const client = await EventHubClient.createFromIotHubConnectionString(this.connectionString);
-      console.log('Successfully created the EventHub Client from IoT Hub connection string.');
+      console.log('Start read message');
+      const client = new EventHubConsumerClient(this.consumerGroup, this.connectionString);
+    
+      /*
+         Refer to other samples, and place your code here to receive events using the above client.
+         Please note that send operations are not supported when this client is used against an IotHub instance
+        */
+    
+      await client.close();
+      console.log(`Client closed`);
+
       this.eventHubClient = client;
 
       const partitionIds = await this.eventHubClient.getPartitionIds();

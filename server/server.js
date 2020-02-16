@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const path = require('path');
 const EventHubReader = require('./scripts/event-hub-reader.js');
 
-const iotHubConnectionString = 'HostName=IoT-Hub-Hackathon-SMBSummit.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=0u+5ze78+CmGiqP6RZarCBUMlwQg3rgryerhzpNnGMY=';
+const iotHubConnectionString = 'Endpoint=sb://iothub-ns-iot-hub-ha-2914707-0e84ea5949.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=/OcmYiar28Y/0WslL7MOzlp4Jvh1nJ6bG8/gG5/FNfo=;EntityPath=iot-hub-hackathon-smbsumm';
 const eventHubConsumerGroup = 'weatherdatacg';
 
 // Redirect requests to the public subdirectory to the root
