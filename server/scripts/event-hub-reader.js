@@ -17,14 +17,6 @@ class EventHubReader {
       console.log('Start read message');
       const client = new EventHubConsumerClient(this.consumerGroup, this.connectionString);
     
-      /*
-         Refer to other samples, and place your code here to receive events using the above client.
-         Please note that send operations are not supported when this client is used against an IotHub instance
-        */
-    
-      await client.close();
-      console.log(`Client closed`);
-
       this.eventHubClient = client;
 
       const partitionIds = await this.eventHubClient.getPartitionIds();
@@ -36,6 +28,7 @@ class EventHubReader {
 
       const onMessage = (message) => {
         const deviceId = message.annotations['iothub-connection-device-id'];
+        console.log("onMessage reveived from device id [%s]", deviceId);
         return startReadMessageCallback(message.body, message.enqueuedTimeUtc, deviceId);
       };
 
