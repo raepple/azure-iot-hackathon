@@ -2,7 +2,7 @@
  * IoT Gateway BLE Script - Microsoft Sample Code - Copyright (c) 2019 - Licensed MIT
  */
 
-const { EventHubClient, EventPosition } = require('@azure/event-hubs');
+const { EventHubConsumerClient, EventPosition } = require('@azure/event-hubs');
 
 class EventHubReader {
   constructor(connectionString, consumerGroup) {
