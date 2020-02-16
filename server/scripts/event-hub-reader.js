@@ -19,7 +19,7 @@ class EventHubReader {
     
       this.eventHubClient = client;
 
-      const subscription = consumerClient.subscribe(
+      const subscription = client.subscribe(
         {
           // The callback where you add your code to process incoming events
           processEvents: async (events, context) => {
