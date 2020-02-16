@@ -19,37 +19,32 @@ class EventHubReader {
     
       this.eventHubClient = client;
 
-      const partitionIds = await this.eventHubClient.getPartitionIds();
-      console.log('The partition ids are: ', partitionIds);
-
-      const onError = (err) => {
-        console.error(err.message || err);
-      };
-
-      const onMessage = (message) => {
-        const deviceId = message.annotations['iothub-connection-device-id'];
-        console.log("onMessage reveived from device id [%s]", deviceId);
-        return startReadMessageCallback(message.body, message.enqueuedTimeUtc, deviceId);
-      };
-
-      this.receiveHandlers = partitionIds.map(id => this.eventHubClient.receive(id, onMessage, onError, {
-        eventPosition: EventPosition.fromEnqueuedTime(Date.now()),
-        consumerGroup: this.consumerGroup,
-      }));
+      const subscription = consumerClient.subscribe(
+        {
+          // The callback where you add your code to process incoming events
+          processEvents: async (events, context) => {
+            for (const event of events) {
+              console.log(
+                `Received event: '${event.body}' from partition: '${context.partitionId}' and consumer group: '${context.consumerGroup}'`
+              );
+            }
+          },
+          processError: async (err, context) => {
+            console.log(`Error : ${err}`);
+          }
+        },
+        { startPosition: earliestEventPosition }
+      );
+    
+      // Wait for a bit before cleaning up the sample
+      setTimeout(async () => {
+        await subscription.close();
+        await consumerClient.close();
+        console.log(`Exiting receiveEvents sample`);
+      }, 30 * 1000);
     } catch (ex) {
       console.error(ex.message || ex);
     }
-  }
-
-  // Close connection to Event Hub.
-  async stopReadMessage() {
-    const disposeHandlers = [];
-    this.receiveHandlers.forEach((receiveHandler) => {
-      disposeHandlers.push(receiveHandler.stop());
-    });
-    await Promise.all(disposeHandlers);
-
-    this.eventHubClient.close();
   }
 }
 
