@@ -16,9 +16,9 @@ sap.ui.require([
 						enableScrolling : true,
 						content : [
 							new ComponentContainer({
-								name : "iothackathon.webapp.controller",
+								name : "iothackathon.webapp",
 								settings : {
-									id : "iothackathon.webapp.controller"
+									id : "iothackathon.webapp"
 								}
 							})
 						]
