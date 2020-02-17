@@ -1,13 +1,13 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
-	"sap/ui/Device",
-	"iothackathon/webapp/model/models"
+	"sap/ui/Device"
 ], function (UIComponent, Device, models) {
 	"use strict";
 
 	return UIComponent.extend("iothackathon.webapp.Component", {
 
 		metadata: {
+			rootView: "iothackathon.webapp.Chart-Device-Data",
 			manifest: "json"
 		},
 

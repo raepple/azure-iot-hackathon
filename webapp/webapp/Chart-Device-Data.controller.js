@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("iothackathon.webapp.controller.Chart-Device-Data", {
+	return Controller.extend("iothackathon.webapp.Chart-Device-Data", {
 		onInit: function () {
 
 		}
@@ -14,15 +14,14 @@ sap.ui.define([ 'sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', 'sa
 	function(Controller, JSONModel, FlattenedDataset, FeedItem) {
 	"use strict";
 
-	var oPageController = Controller.extend("iothackathon.webapp.controller.Chart-Device-Data", {
+	var oPageController = Controller.extend("iothackathon.webapp.Chart-Device-Data", {
 		/* ============================================================ */
 		/* Constants                                                    */
 		/* ============================================================ */
 		/**
 		 * Constants used in the example.
 		 *
-		 * @private
-		 * @property {String} sampleName Name of the chart container sample
+		 * @private		 
 		 * @property {Object} vizFrame Viz Frame used in the view
 		 * @property {String} vizFrame.id Id of the Viz Frame
 		 * @property {Object} vizFrame.dataset Config used for the Viz Frame Flattened data
@@ -38,7 +37,6 @@ sap.ui.define([ 'sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', 'sa
 		 * @property {Object[]} vizFrame.feedItems Viz Frame feed items
 		 */
 		_constants: {
-			sampleName: "sap.suite.ui.commons.sample.ChartContainerSimpleToolbar",
 			vizFrame: {
 				id: "chartContainerVizFrame",
 				dataset: {
@@ -121,7 +119,7 @@ sap.ui.define([ 'sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', 'sa
 		 */
 		_updateVizFrame: function(vizFrame) {
 			var oVizFrame = this._constants.vizFrame;
-			var oVizFramePath = jQuery.sap.getModulePath(this._constants.sampleName, oVizFrame.modulePath);
+			var oVizFramePath = jQuery.sap.getModulePath(".", oVizFrame.modulePath);
 			var oModel = new JSONModel(oVizFramePath);
 			var oDataset = new FlattenedDataset(oVizFrame.dataset);
 

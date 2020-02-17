@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="iothackathon.webapp.controller.Chart-Device-Data"
+	controllerName="iothackathon.webapp.Chart-Device-Data"
 	xmlns="sap.suite.ui.commons"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:viz="sap.viz.ui5.controls"
