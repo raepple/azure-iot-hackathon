@@ -35,7 +35,7 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "iothackathon.webapp.view.Chart-Device-Data",
+			"viewName": "iothackathon.webapp.Chart-Device-Data",
 			"type": "XML",
 			"async": true,
 			"id": "Chart-Device-Data"
@@ -70,7 +70,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "iothackathon.webapp.view",
+				"viewPath": "iothackathon.webapp",
 				"controlAggregation": "pages",
 				"controlId": "app",
 				"clearControlAggregation": false
