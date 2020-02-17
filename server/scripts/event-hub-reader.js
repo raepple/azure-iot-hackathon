@@ -2,7 +2,7 @@
  * IoT Gateway BLE Script - Microsoft Sample Code - Copyright (c) 2019 - Licensed MIT
  */
 
-const { EventHubConsumerClient, earliestEventPosition } = require('@azure/event-hubs');
+const { EventHubConsumerClient, latestEventPosition } = require('@azure/event-hubs');
 
 class EventHubReader {
   constructor(connectionString, consumerGroup) {
@@ -24,24 +24,20 @@ class EventHubReader {
           // The callback where you add your code to process incoming events
           processEvents: async (events, context) => {
             for (const event of events) {
+              const message =  JSON.stringify(event.body);
               console.log(
-                `Received event: '${event.body}' from partition: '${context.partitionId}' and consumer group: '${context.consumerGroup}'`
+                `Received event #: '${event.sequenceNumber}' from partition: '${context.partitionId}' and consumer group: '${context.consumerGroup}' with message: '${message}'`
               );
+              console.log("Temperature: %s", event.body.temperature);
+              console.log("Humidity: %s", event.body.humidity);              
             }
           },
           processError: async (err, context) => {
             console.log(`Error : ${err}`);
           }
         },
-        { startPosition: earliestEventPosition }
+        { startPosition: latestEventPosition }
       );
-    
-      // Wait for a bit before cleaning up the sample
-      setTimeout(async () => {
-        await subscription.close();
-        await consumerClient.close();
-        console.log(`Exiting receiveEvents sample`);
-      }, 30 * 1000);
     } catch (ex) {
       console.error(ex.message || ex);
     }
