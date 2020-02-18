@@ -1,93 +1,39 @@
 {
-	"_version": "1.12.0",
 	"sap.app": {
-		"id": "iothackathon.webapp",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
+		"id": "sap.viz.sample.Line",
 		"applicationVersion": {
 			"version": "1.0.0"
-		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
-		"sourceTemplate": {
-			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
-			"version": "1.40.12"
 		}
 	},
-
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": "",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
-	},
-
 	"sap.ui5": {
-		"flexEnabled": false,
 		"rootView": {
-			"viewName": "iothackathon.webapp.Chart-Device-Data",
+			"viewName": "sap.viz.sample.Line.Line",
 			"type": "XML",
-			"async": true,
-			"id": "Chart-Device-Data"
-		},
-		"dependencies": {
-			"minUI5Version": "1.65.6",
-			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
-				"sap.ui.layout": {}
-			}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "iothackathon.webapp.i18n.i18n"
-				}
-			}
+			"async": true
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"async": true,
-				"viewPath": "iothackathon.webapp",
-				"controlAggregation": "pages",
-				"controlId": "app",
-				"clearControlAggregation": false
-			},
-			"routes": [{
-				"name": "RouteChart-Device-Data",
-				"pattern": "RouteChart-Device-Data",
-				"target": ["TargetChart-Device-Data"]
-			}],
-			"targets": {
-				"TargetChart-Device-Data": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewId": "Chart-Device-Data",
-					"viewName": "Chart-Device-Data"
+			"css": [
+				{
+					"uri": "./css/style.css"
 				}
+			]
+		},
+		"dependencies": {
+			"libs": {
+				"sap.viz": {},
+				"sap.ui.layout": {},
+				"sap.m": {}
+			}
+		},
+		"config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Line.view.xml",
+					"Line.controller.js",
+					"InitPage.js",
+					"manifest.json"
+				]
 			}
 		}
 	}

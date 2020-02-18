@@ -1,0 +1,12 @@
+{
+  "sensordata": [{
+        "Week": "Week 1",
+        "Temperature": 43.22,
+        "Humidity": 23.00
+    },
+    {
+        "Week": "Week 2",
+        "Temperature": 44.22,
+        "Humidity": 22.00
+    }]
+}

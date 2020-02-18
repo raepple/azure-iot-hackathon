@@ -3,23 +3,29 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hackathon SMB Innovation Summit 2020</title>
+	<title>Line</title>
 
 	<script id="sap-ui-bootstrap"
 		src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-		data-sap-ui-libs="sap.m"
 		data-sap-ui-theme="sap_belize"
 		data-sap-ui-resourceroots='{
-			"iothackathon.webapp": "./",
+			"sap.viz.sample.Line": "./",
 			"sap.ui.demo.mock": "mockdata"
 		}'
 		data-sap-ui-compatVersion="edge"
 		data-sap-ui-async="true"
-		data-sap-ui-frameOptions="trusted">
+		data-sap-ui-frameOptions="trusted"
+		data-sap-ui-oninit="module:sap/ui/core/ComponentSupport">
 	</script>
-	<script src="index.js"></script>
 </head>
 
 <body class="sapUiBody" id="content">
+	<div data-sap-ui-component
+		data-name="sap.viz.sample.Line"
+		data-height="100%"
+		data-id="container"
+		data-settings='{"id" : "sap.viz.sample.Line"}'
+		style="height: 100%">
+	</div>
 </body>
 </html>
