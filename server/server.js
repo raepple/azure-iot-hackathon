@@ -9,7 +9,7 @@ const eventHubConsumerGroup = 'weatherdatacg';
 
 // Redirect requests to the public subdirectory to the root
 const app = express();
-app.use(express.static(path.join(__dirname, 'webapp')));
+app.use(express.static(path.join(__dirname, 'www')));
 app.use((req, res /* , next */) => {
   res.redirect('/');
 });
@@ -37,19 +37,11 @@ server.listen(process.env.PORT || '3000', () => {
 const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsumerGroup);
 
 (async () => {
-  await eventHubReader.startReadMessage((message, date, deviceId) => {
-    console.log('Read event hub message');
+  await eventHubReader.startReadMessage((event) => {
     try {
-      const payload = {
-        IotData: message,
-        MessageDate: date || Date.now().toISOString(),
-        DeviceId: deviceId,
-      };
-
-      wss.broadcast(JSON.stringify(payload));
-      console.log('Broadcast payload from [%s]', JSON.stringify(payload));
+      wss.broadcast(JSON.stringify(event));
     } catch (err) {
-      console.error('Error broadcasting: [%s] from [%s].', err, message);
+      console.error('Error broadcasting: [%s]', err);
     }
   });
 })().catch();

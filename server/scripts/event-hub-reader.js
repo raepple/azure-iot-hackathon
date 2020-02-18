@@ -16,9 +16,7 @@ class EventHubReader {
     try {
       console.log('Start read message');
       const client = new EventHubConsumerClient(this.consumerGroup, this.connectionString);
-    
       this.eventHubClient = client;
-
       const subscription = client.subscribe(
         {
           // The callback where you add your code to process incoming events
@@ -30,6 +28,8 @@ class EventHubReader {
               );
               console.log("Temperature: %s", event.body.temperature);
               console.log("Humidity: %s", event.body.humidity);              
+            
+              return startReadMessageCallback(event.body);
             }
           },
           processError: async (err, context) => {
