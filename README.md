@@ -40,7 +40,7 @@ Most of the IoT solutions essentially follow the below reference [architecture](
 
 We first connect our DevKits to our Azure Event Hubs and start streaming data ([link](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-arduino-iot-devkit-az3166-get-started)), then create an Azure Streaming Analytics job and define [input stream](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-add-inputs)) and [output(s)](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-define-outputs). Using the [historical weather data](https://github.com/mozamani/nextgeniot/blob/master/files/weather_clean.csv), we can build a machine learning classifier that predicts probability of rain based on measured humidity and temprature levels. We then expose this model as a webservice and call the model using a [stream analytcis function](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-scale-with-machine-learning-functions). Now we can query our stream and start predicting weather live. Results can be either written to an output storage unit or a live [PowerBI dashboard](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-power-bi-dashboard).   
 
-
+Please also refer to this [presentation](https://github.com/raepple/azure-iot-hackathon/raw/master/Hackathon_Scenario_Overview.pptx) which provides an overview of the scenario an additional hints and tipps. 
 
 ## Other scenarios
 
